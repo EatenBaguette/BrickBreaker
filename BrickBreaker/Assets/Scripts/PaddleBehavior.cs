@@ -11,17 +11,12 @@ public class PaddleBehavior : MonoBehaviour
     
     public KeyCode leftKey;
     public KeyCode rightKey;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    [SerializeField] private BallBehavior ball;
 
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKey(leftKey) && transform.position.x > -xLimit)
         {
             transform.position -= new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
@@ -31,5 +26,10 @@ public class PaddleBehavior : MonoBehaviour
         {
             transform.position += new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ball.changeYDirection();
     }
 }

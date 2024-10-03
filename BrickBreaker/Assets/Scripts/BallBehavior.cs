@@ -13,7 +13,7 @@ public class BallBehavior : MonoBehaviour
     
     private Vector2 _ballDirection;
 
-    public Vector3 _initialPosition;
+    [SerializeField] private Vector3 _initialPosition;
     
     // Start is called before the first frame update
     void Start()
@@ -33,12 +33,12 @@ public class BallBehavior : MonoBehaviour
 
             if (Mathf.Abs(transform.position.x) >= xLimit)
             {
-                _ballDirection.x *= -1;
+                changeXDirection();
             }
 
             if (Mathf.Abs(transform.position.y) >= yLimit)
             {
-                _ballDirection.y *= -1;
+                changeYDirection();
             }
             
             
@@ -56,9 +56,19 @@ public class BallBehavior : MonoBehaviour
         _ballDirection = new Vector2(Random.value > 0.5f ? 1 : -1, 1);
     }
 
-    public void ResetBall()
+    private void ResetBall()
     {
         transform.position = _initialPosition;
         isStarted = false;
+    }
+
+    public void changeXDirection()
+    {
+        _ballDirection.x *= -1;
+    }
+
+    public void changeYDirection()
+    {
+        _ballDirection.y *= -1;
     }
 }
