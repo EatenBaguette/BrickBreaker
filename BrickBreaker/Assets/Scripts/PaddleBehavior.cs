@@ -5,31 +5,39 @@ using UnityEngine;
 
 public class PaddleBehavior : MonoBehaviour
 {
-    public float paddleSpeed = 5.0f;
+    [SerializeField] private float paddleSpeed = 5.0f;
 
-    public float xLimit = 3.33f;
+   [SerializeField] private float xLimit = 3.33f;
     
-    public KeyCode leftKey;
-    public KeyCode rightKey;
+    [SerializeField] private KeyCode leftKey;
+    [SerializeField] private KeyCode rightKey;
 
     [SerializeField] private BallBehavior ball;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(leftKey) && transform.position.x > -xLimit)
+        if (GameBehavior.Instance.gameState == Utilities.GameState.Play)
         {
-            transform.position -= new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
-        }
+            if (Input.GetKey(leftKey) && transform.position.x > -xLimit)
+            {
+                transform.position -= new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
+            }
         
-        if (Input.GetKey(rightKey) && transform.position.x < xLimit)
-        {
-            transform.position += new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
+            if (Input.GetKey(rightKey) && transform.position.x < xLimit)
+            {
+                transform.position += new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
+            }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        ball.changeYDirection();
+        if (other.gameObject.CompareTag("Ball"))
+        { 
+            float xDistance = (other.transform.position.x) - (transform.position.x);
+
+            ball.HitPaddleDirection(xDistance);
+        }
     }
 }

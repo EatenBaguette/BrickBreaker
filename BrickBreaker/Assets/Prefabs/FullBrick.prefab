@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7637633329338363115}
   m_Layer: 0
   m_Name: FullBrick
-  m_TagString: Untagged
+  m_TagString: Fullbrick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f91973d588624bff9c909a45c234a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ball: {fileID: 0}
+  halfBrick: {fileID: 8887352508127107580, guid: ef5e5f5976cbb40b9b65b83195a12dbc, type: 3}
+  quarterBrick: {fileID: 7320239735165731296, guid: fe18ed5d19dad4bcf9d07ea65ca5360c, type: 3}
