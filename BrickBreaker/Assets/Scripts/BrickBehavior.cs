@@ -22,23 +22,6 @@ public class BrickBehavior : MonoBehaviour
    
    private void OnCollisionEnter2D(Collision2D other)
    {
-      float xDistance = Mathf.Abs(other.transform.position.x - transform.position.x);
-      float yDistance = Mathf.Abs(other.transform.position.y - transform.position.y);
-      
-      if (xDistance > yDistance)
-      {
-         ball.ChangeXDirection();
-      }
-      else if (xDistance < yDistance)
-      {
-         ball.ChangeYDirection();
-      }
-      else
-      {
-         ball.ChangeXDirection();
-         ball.ChangeYDirection();
-      }
-      
       if (other.gameObject.CompareTag("Ball"))
       {
          if (gameObject.CompareTag("Fullbrick"))

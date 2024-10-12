@@ -14,6 +14,8 @@ public class GameBehavior : MonoBehaviour
    
    [SerializeField] private TextMeshProUGUI _gameOverText;
 
+   [SerializeField] private AudioSource _soundtrack;
+
    public Utilities.GameState gameState = Utilities.GameState.Play;
 
    public void Awake()
@@ -31,7 +33,9 @@ public class GameBehavior : MonoBehaviour
    {
       player.Score = 0; 
       
-      _pauseImage = GameObject.Find("Pause"); 
+      _pauseImage = GameObject.Find("Pause");
+
+      _soundtrack = GameObject.Find("Soundtrack").GetComponent<AudioSource>();
       
       _pauseImage.SetActive(false);
       
@@ -71,5 +75,9 @@ public class GameBehavior : MonoBehaviour
    {
       _gameOverText.text = "Game Over";
       _gameOverText.enabled = true;
+      while (_soundtrack.volume > 0)
+      {
+         _soundtrack.volume -= 0.1f;
+      }
    }
 }

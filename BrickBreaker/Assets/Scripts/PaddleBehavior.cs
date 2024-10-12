@@ -30,14 +30,4 @@ public class PaddleBehavior : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ball"))
-        { 
-            float xDistance = (other.transform.position.x) - (transform.position.x);
-
-            ball.HitPaddleDirection(xDistance);
-        }
-    }
 }
